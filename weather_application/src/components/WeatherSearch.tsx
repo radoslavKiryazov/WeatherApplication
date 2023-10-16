@@ -1,4 +1,4 @@
-import {useState, ChangeEvent} from 'react';
+import {useState, ChangeEvent, useEffect} from 'react';
 import { Location } from '../types/types';
 import { WeatherData } from '../types/types';
 
@@ -8,10 +8,15 @@ const API_BASE_URL: string = `http://api.openweathermap.org/geo/1.0/direct`;
 const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
 const [searchField, setSearchField] = useState<string>('');
 const [locationSuggestions, setLocationSuggestions] = useState<Location[]>([]);
+const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
 const onInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchField(event.target.value);
-    getSuggestions(event.target.value);
+    const value = event.target.value.trim();
+
+    setSearchField(value);
+
+    if(value === '') return;
+    getSuggestions(value);
 }
 
 const getSuggestions = async (searchField: string) => {
@@ -36,7 +41,7 @@ const getWeather = async (selectedLocation: Location) => {
     .then((data) => {
         console.log(data);
         const weatherData = mapToWeatherData(data);
-        console.log(weatherData);
+        setWeatherData(weatherData);
     }).catch((error) => console.log(error));
 }
 
@@ -50,6 +55,11 @@ const mapToWeatherData = (data: any): WeatherData => {
     }
     return temp;
 }
+
+useEffect(() => {
+    if(searchField === '') setLocationSuggestions([]);
+
+},[searchField])
 
 
 
@@ -67,7 +77,7 @@ const mapToWeatherData = (data: any): WeatherData => {
         {locationSuggestions.map((suggestion: Location, index: number) => (
         <li key={index}> 
         <button onClick={() => onSuggestionClick(suggestion)}>
-            {suggestion.name}
+            {suggestion.name}, {suggestion.country}
         </button> 
         </li>
         ))}
