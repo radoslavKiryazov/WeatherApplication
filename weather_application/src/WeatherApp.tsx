@@ -10,7 +10,7 @@ function WeatherApp() {
     onSuggestionClick,
     onSearchClick} = useWeather();
   return (
-    <div className='flex justify-center items-center w-full bg-meadow h-[100vh]'>
+    <div className='flex justify-center items-center w-full bg-meadow bg-cover h-[100vh]'>
       {weatherData ? ( 
         <Dashboard data={weatherData} />
       ):(
