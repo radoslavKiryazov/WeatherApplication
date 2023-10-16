@@ -4,7 +4,7 @@ import { mapToWeatherData } from "../helperFunctions";
 //todo switch to axios at some point
 
 const useWeather = () => {
-    const API_BASE_URL: string = `http://api.openweathermap.org`;
+    const API_BASE_URL: string = `https://api.openweathermap.org`;
 
     const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
     const [searchField, setSearchField] = useState<string>('');
