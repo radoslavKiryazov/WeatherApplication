@@ -21,7 +21,7 @@ const useWeather = () => {
     }
     
     const getSuggestions = async (searchField: string) => {
-        fetch(`${API_BASE_URL}/geo/1.0/direct?q=${searchField}&limit=4&appid=${process.env.REACT_APP_APIKEY}`)
+        fetch(`${API_BASE_URL}/geo/1.0/direct?q=${searchField}&limit=4&appid=4bda46464277aef552ccb84bb40d2b5d`)
         .then((response) => response.json())
         .then((data) => setLocationSuggestions(data))
         
