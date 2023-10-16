@@ -10,3 +10,7 @@ export const mapToWeatherData = (data: any): WeatherData => {
     }
     return temp;
 }
+
+export const degreeParser = (number: number):string => {
+    return `${Math.ceil(number)}°`;
+}

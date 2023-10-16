@@ -1,5 +1,6 @@
 import WeatherSearch from './components/WeatherSearch';
 import useWeather from './hooks/useWeather';
+import Dashboard from './components/Dashboard';
 
 function WeatherApp() {
   const {searchField,
@@ -11,7 +12,7 @@ function WeatherApp() {
   return (
     <div className='flex justify-center items-center w-full bg-blue-200 h-[100vh]'>
       {weatherData ? ( 
-        weatherData.main.temp
+        <Dashboard data={weatherData} />
       ):(
     <WeatherSearch searchField={searchField} locationSuggestions={locationSuggestions} onInput={onInput} onSuggestionClick={onSuggestionClick} onSearchClick={onSearchClick}/>
     )}
