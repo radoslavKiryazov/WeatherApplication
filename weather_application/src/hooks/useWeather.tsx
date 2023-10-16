@@ -20,7 +20,7 @@ const useWeather = () => {
     }
     
     const getSuggestions = async (searchField: string) => {
-        fetch(`${API_BASE_URL}?q=${searchField}&limit=5&appid=${process.env.REACT_APP_APIKEY}`)
+        fetch(`${API_BASE_URL}?q=${searchField}&limit=4&appid=${process.env.REACT_APP_APIKEY}`)
         .then((response) => response.json())
         .then((data) => setLocationSuggestions(data))
         
@@ -35,8 +35,9 @@ const useWeather = () => {
         if(selectedLocation === null) return;
         getWeather(selectedLocation);
     }
+    
     const getWeather = async (selectedLocation: Location) => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${process.env.REACT_APP_APIKEY}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${process.env.REACT_APP_APIKEY}&units=metric`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -48,6 +49,13 @@ const useWeather = () => {
         if(searchField === '') setLocationSuggestions([]);
     
     },[searchField])
+
+    useEffect(() => {
+    if(selectedLocation){
+    setSearchField(selectedLocation.name);
+    setLocationSuggestions([]);
+    }
+    }, [selectedLocation])
 
     return {
         searchField,

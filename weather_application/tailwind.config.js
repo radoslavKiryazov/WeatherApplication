@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        meadow: "url('/public/images/meadow.jpg')",
+      },
+    },
   },
   plugins: [],
 };

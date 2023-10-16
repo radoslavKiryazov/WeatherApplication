@@ -1,5 +1,6 @@
 import {ChangeEvent} from 'react';
 import { Location } from '../types/types';
+import SearchBar from './SearchBar';
 import WeatherSearchHeader from './WeatherSearchHeader';
 import SuggestionList from './SuggestionList';
 
@@ -14,15 +15,15 @@ interface WeatherSearchProps {
 const WeatherSearch = ({searchField, locationSuggestions, onInput, onSuggestionClick, onSearchClick}: WeatherSearchProps):JSX.Element =>{
 
     return(
-        <div className="lg:h-[500px] lg:w-[600px] p-24 flex flex-col justify-center items-center bg-red-600">
+        <div className="w-full h-full md:max-w-[600px] md:max-h-[350px] md:px-10 lg:h-[500px] lg:w-[600px] lg:p-24  flex flex-col
+        p-4 text-center items-center justify-center bg-black/50 backdrop-blur-ls rounded-lg drop-shadow-lx">
         <WeatherSearchHeader/>
         <div className="flex relative">
-        <input type='text' className='px-2' value={searchField} onInput={onInput}/>
-
-        <SuggestionList suggestions={locationSuggestions} onSuggestionClick={onSuggestionClick}/>
-        <button className='cursor-pointer' onClick={onSearchClick} >
+        <SearchBar value={searchField} onInput={onInput}/>
+        <button className='ml-1 p-1 text-sm font-thin cursor-pointer outline outline-1 outline-green-400 rounded-xl text-white bg-black' onClick={onSearchClick} >
         Search
         </button>
+        <SuggestionList suggestions={locationSuggestions} onSuggestionClick={onSuggestionClick}/>
         </div>
         </div>
         

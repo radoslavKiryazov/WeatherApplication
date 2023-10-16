@@ -9,9 +9,9 @@ interface DashboardHeaderProps {
 const DashboardHeader = ({name, country, mainWeather, description}: DashboardHeaderProps): JSX.Element => {
     return(
         <>
-        <h1> {name}{country}</h1>
-            <p className='text-sm'>{mainWeather}</p>
-            <p className='text-xs italic'>{description}</p>
+        <h1 className="font-thin text-white"> {name}, <span className='text-green-400 font-normal'>{country}</span></h1>
+            <p className='text-base text-green-400 font-normal'>{mainWeather}</p>
+            <p className='font-normal text-sm italic text-white'>{description}</p>
         </>
     )
 

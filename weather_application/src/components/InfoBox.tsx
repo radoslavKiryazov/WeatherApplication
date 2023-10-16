@@ -5,9 +5,9 @@ interface InfoBoxProps {
 
 const InfoBox = ({ title, information}: InfoBoxProps) => {
     return (
-    <div className='w-[120px] text-s flex flex-col items-center bg-black/40 rounded-xl pt-1'>
-    <span className='text-xs'>{title}</span>
-    <span className='text-xl font-bold'> {information} </span>
+    <div className='w-[120px] text-s flex flex-col items-center bg-white/10 -space-y-2 rounded-md'>
+    <span className='text-s font-thin text-white'>{title}</span>
+    <span className='text-xl font-normal text-green-400'> {information} </span>
     </div>);
 }
 
