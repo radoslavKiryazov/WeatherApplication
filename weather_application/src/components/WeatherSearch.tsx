@@ -12,10 +12,10 @@ const onInput = (event: ChangeEvent<HTMLInputElement>) => {
     getSuggestions(event.target.value);
 }
 
-const getSuggestions = async (searcField: string) => {
-    fetch(`${API_BASE_URL}?q=${searcField}&limit=5&appid=${process.env.REACT_APP_APIKEY}`)
+const getSuggestions = async (searchField: string) => {
+    fetch(`${API_BASE_URL}?q=${searchField}&limit=5&appid=${process.env.REACT_APP_APIKEY}`)
     .then((response) => response.json())
-    .then((data) => console.log(data))
+    .then((data) => setLocationSuggestions(data))
     
     .catch((error) => console.log(error));
 }
@@ -27,8 +27,17 @@ const getSuggestions = async (searcField: string) => {
         <p className='text-sm'>
         Search for a place to find the current weather conditions.
         </p>
-        <div className="flex">
-        <input type='text' className='px-2' onInput={onInput}/>
+        <div className="flex relative">
+        <input type='text' className='px-2' value={searchField} onInput={onInput}/>
+        <ul className='absolute top-7'>
+        {locationSuggestions.map((suggestion: LocationSuggestion, index: number) => (
+        <li key={index}> 
+        <button>
+            {suggestion.name}
+        </button> 
+        </li>
+        ))}
+    </ul>
         <button className='cursor-pointer border-solid border-light-blue-500'>
         Search
         </button>
