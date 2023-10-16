@@ -1,9 +1,10 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { WeatherData, Location} from '../types/types';
 import { mapToWeatherData } from "../helperFunctions";
+//todo switch to axios at some point
 
 const useWeather = () => {
-    const API_BASE_URL: string = `http://api.openweathermap.org/geo/1.0/direct`;
+    const API_BASE_URL: string = `http://api.openweathermap.org`;
 
     const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
     const [searchField, setSearchField] = useState<string>('');
@@ -20,7 +21,7 @@ const useWeather = () => {
     }
     
     const getSuggestions = async (searchField: string) => {
-        fetch(`${API_BASE_URL}?q=${searchField}&limit=4&appid=${process.env.REACT_APP_APIKEY}`)
+        fetch(`${API_BASE_URL}/geo/1.0/direct?q=${searchField}&limit=4&appid=${process.env.REACT_APP_APIKEY}`)
         .then((response) => response.json())
         .then((data) => setLocationSuggestions(data))
         
@@ -37,7 +38,7 @@ const useWeather = () => {
     }
     
     const getWeather = async (selectedLocation: Location) => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${process.env.REACT_APP_APIKEY}&units=metric`)
+        fetch(`${API_BASE_URL}/data/2.5/weather?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${process.env.REACT_APP_APIKEY}&units=metric`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
