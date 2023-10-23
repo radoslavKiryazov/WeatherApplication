@@ -9,6 +9,7 @@ function WeatherApp() {
     onInput,
     onSuggestionClick,
     onSearchClick} = useWeather();
+  
   return (
     <div className='flex justify-center items-center w-full bg-meadow bg-cover h-[100vh]'>
       {weatherData ? ( 
