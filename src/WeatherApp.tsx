@@ -8,12 +8,13 @@ function WeatherApp() {
     weatherData,
     onInput,
     onSuggestionClick,
-    onSearchClick} = useWeather();
+    onSearchClick,
+  onResetButton} = useWeather();
   
   return (
     <div className='flex justify-center items-center w-full bg-meadow bg-cover h-[100vh]'>
       {weatherData ? ( 
-        <Dashboard data={weatherData} />
+        <Dashboard data={weatherData} onResetButton={onResetButton} />
       ):(
     <WeatherSearch searchField={searchField} locationSuggestions={locationSuggestions} onInput={onInput} onSuggestionClick={onSuggestionClick} onSearchClick={onSearchClick}/>
     )}

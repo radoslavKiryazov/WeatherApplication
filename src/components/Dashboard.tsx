@@ -3,12 +3,15 @@ import InfoBox from "./InfoBox";
 import { degreeParser } from '../helperFunctions';
 import DashboardHeader from "./DashboardHeader";
 import DashboardIcon from "./DashboardIcon";
+import useWeather from "../hooks/useWeather";
 
 interface DashboardProps {
     data: WeatherData;
+    onResetButton: () => void;
 }
 
-const Dashboard = ({data}: DashboardProps): JSX.Element => {
+const Dashboard = ({data, onResetButton}: DashboardProps): JSX.Element => {
+
     return (
         <div className="w-full h-full md:max-w-[600px] md:max-h-[300px] md:px-10 lg:h-[500px] lg:w-[600px] lg:p-24  flex flex-col
         p-5 text-center items-center justify-center bg-black/50 backdrop-blur-ls rounded-lg drop-shadow-lx">
@@ -27,7 +30,7 @@ const Dashboard = ({data}: DashboardProps): JSX.Element => {
             <section className='flex text-center justify-center pt-2'>
             <InfoBox title='Humidity:'information={`${data.main.humidity}%`}/>
             </section>
-
+            <button className="bg-green-500" onClick={onResetButton}> reset</button>
             </div>
         </div>
     )

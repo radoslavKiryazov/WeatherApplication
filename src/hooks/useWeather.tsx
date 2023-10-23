@@ -19,6 +19,10 @@ const useWeather = () => {
         if(value === '') return;
         getSuggestions(value);
     }
+
+    const onResetButton = ():void => {
+        setWeatherData(null);
+    }
     
     const getSuggestions = async (searchField: string) => {
         
@@ -31,11 +35,6 @@ const useWeather = () => {
         } catch(error) {
             console.log(error);
         }
-
-        /* fetch(`${API_BASE_URL}/geo/1.0/direct?q=${searchField}&limit=4&appid=${process.env.REACT_APP_APIKEY}`)
-        .then((response) => response.json())
-        .then((data) => setLocationSuggestions(data))
-        .catch((error) => console.log(error)); */
     }
     const onSuggestionClick = (suggestion: Location) => {
         console.log(suggestion.name);
@@ -58,14 +57,6 @@ const useWeather = () => {
         } catch(error) {
             console.log(error);
         }
-        
-        /* fetch(`${API_BASE_URL}/data/2.5/weather?lat=${selectedLocation.lat}&lon=${selectedLocation.lon}&appid=${process.env.REACT_APP_APIKEY}&units=metric`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            const weatherData = mapToWeatherData(data);
-            setWeatherData(weatherData);
-        }).catch((error) => console.log(error)); */
     }
 
     useEffect(() => {
@@ -87,7 +78,8 @@ const useWeather = () => {
         weatherData,
         onInput,
         onSuggestionClick,
-        onSearchClick
+        onSearchClick,
+        onResetButton
     }
     
 }
